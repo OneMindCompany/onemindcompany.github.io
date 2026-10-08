@@ -35,3 +35,27 @@ GitHub Pages publica desde `main`, raíz.
 | `qa` | Validación | ✅ |
 | `develop` | Integración del trabajo en curso | ✅ |
 | `feature/*` | Trabajo puntual, se integra a `develop` vía PR | ❌ |
+
+## Contenido
+
+| Archivo | Para qué |
+|---|---|
+| `app-ads.txt` | Declara que la cuenta de AdMob `pub-4728591837862628` está autorizada a vender los anuncios de las apps de One Mind Company. Una sola línea cubre todas las apps de esa cuenta, en las dos tiendas |
+| `.nojekyll` | Pages sirve los archivos tal cual, sin procesarlos con Jekyll |
+
+La línea de `app-ads.txt` la entrega AdMob en **Apps › Ver todas las apps › app-ads.txt › Cómo
+configurar app-ads.txt**. Si se suma otra red de anuncios, se agrega su línea aquí.
+
+## Dependencias
+
+```mermaid
+flowchart LR
+    play["Ficha de Google Play / App Store<br/>sitio web: onemindcompany.github.io/suscripcion-politicas/"]
+    admob["Rastreador de AdMob"]
+    raiz["onemindcompany.github.io<br/>(este repo, rama main)"]
+    politicas["onemindcompany.github.io/suscripcion-politicas/<br/>(repo suscripcion-politicas)"]
+
+    admob -->|"lee el dominio del sitio web"| play
+    admob -->|"GET /app-ads.txt"| raiz
+    play -.->|"enlace de la ficha"| politicas
+```
